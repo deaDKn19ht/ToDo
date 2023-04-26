@@ -2,6 +2,15 @@ import { defineStore } from "pinia";
 import { ref, computed } from 'vue';
 
 export const useToDoStore = defineStore('ToDoStore', () => {
+
+    const visibility = ref(false);
+
+    const changeVisibility = () => {
+        visibility.value = !visibility.value;
+        
+    };
+
+
     const task = ref({
         title: '',
         comment: '',
@@ -10,7 +19,7 @@ export const useToDoStore = defineStore('ToDoStore', () => {
     })
     const tasks = ref([])
 
-    const AddTask = () => {
+    const addTask = () => {
         if(task.value.title.length > 0) {
           tasks.value.push(task.value);  
             clearTask();
@@ -22,6 +31,6 @@ export const useToDoStore = defineStore('ToDoStore', () => {
     }
 
     return {
-        task, tasks, AddTask
+        task, tasks, visibility, addTask, changeVisibility, 
     }
 })
