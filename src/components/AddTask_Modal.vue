@@ -1,7 +1,7 @@
 <template>
     <div>
         <input type="text" v-model.trim="ToDoStore.task.title" @keyup.enter="ToDoStore.addTask">
-        <textarea v-model="ToDoStore.task.comment" @keyup.enter="ToDoStore.addTask"></textarea>
+        <textarea v-model="ToDoStore.task.comment" @keyup.enter="ToDoStore.addTask" maxlength="240" class="resize-none h-48"></textarea>
         <button @click="ToDoStore.addTask">Add</button>
     </div>
 </template>
