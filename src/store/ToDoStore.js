@@ -1,40 +1,66 @@
 import { defineStore } from "pinia";
-import { ref, computed } from 'vue';
+import { ref, computed } from "vue";
 
-export const useToDoStore = defineStore('ToDoStore', () => {
+export const useToDoStore = defineStore("ToDoStore", () => {
 
-    const visibility = ref(false);
+  const task = ref({
+    title: "",
+    comment: "",
+    id: Date.now(),
+    isDone: false,
+  });
 
-    const changeVisibility = () => {
-        visibility.value = !visibility.value;
-        
-    };
+  const tasks = ref([]);
+  const selected = ref("all");
+  const visibility = ref(false);
 
+  const filterTasks = computed(() => {
+    return selected.value === "completed"
+      ? tasks.value.filter((t) => t.isDone)
+      : selected.value === "not-completed"
+      ? tasks.value.filter((t) => !t.isDone)
+      : tasks.value;
+  });
 
-    const task = ref({
-        title: '',
-        comment: '',
-        id: Date.now(),
-        isDone: false,
-    })
-    const tasks = ref([])
-
-    const addTask = () => {
-        if(task.value.title.length > 0) {
-          tasks.value.push(task.value);  
-            clearTask();
-        }
+  const addTask = () => {
+    if (task.value.title.length > 0) {
+      tasks.value.push(task.value);
+      clearTask();
+      visibility.value = false;
     }
+  };
 
-    const clearTask = () => {        
-        task.value = {title: '', comment: '', id: Date.now()};
-    }
+  const changeVisibility = () => {
+    visibility.value = !visibility.value;
+    clearTask();
+  };
 
-    const deleteTask = (id) => {
-        tasks.value = tasks.value.filter((t) => t.id != id)
-    }
+  const clearTask = () => {
+    task.value = { title: "", comment: "", id: Date.now() };
+  };
 
-    return {
-        task, tasks, visibility, addTask, changeVisibility, deleteTask,
-    }
-})
+  const deleteTask = (id) => {
+    tasks.value = tasks.value.filter((t) => t.id != id);
+  };
+
+  const cleareTasks = () => {
+    tasks.value = tasks.value.filter((t) => !t);
+  };
+
+  const cleareCompleteTasks = () => {
+    tasks.value = tasks.value.filter((t) => !t.isDone);
+  };
+
+  return {
+    task,
+    tasks,
+    visibility,
+    filterTasks,
+    selected,
+    addTask,
+    changeVisibility,
+    deleteTask,
+    cleareTasks,
+    cleareCompleteTasks,
+  };
+});
