@@ -30,7 +30,11 @@ export const useToDoStore = defineStore('ToDoStore', () => {
         task.value = {title: '', comment: '', id: Date.now()};
     }
 
+    const deleteTask = (id) => {
+        tasks.value = tasks.value.filter((t) => t.id != id)
+    }
+
     return {
-        task, tasks, visibility, addTask, changeVisibility, 
+        task, tasks, visibility, addTask, changeVisibility, deleteTask,
     }
 })
