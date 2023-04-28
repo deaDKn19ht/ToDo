@@ -1,7 +1,7 @@
 <template>
     <div>
-        <ul>
-            <li v-for="task in ToDoStore.filterTasks" :key="task.id" :title="task.comment">{{ task.title }}
+        <ul class="p-5">
+            <li v-for="task in ToDoStore.filterTasks" :key="task.id" :title="task.comment" >{{ task.title }}
                 <input type="checkbox" id="task.id" v-model="task.isDone">
                 <button @click="ToDoStore.deleteTask(task.id)">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
