@@ -9,10 +9,10 @@
     const ToDoStore = useToDoStore();
 </script>
 
-<template class="flex">
-    <ToDoHeader class="flex justify-between h-8 w-full p-1 bg-emerald-200" />
-    <tasksList class="grow w-full " />
-    <ToDoFooter class="flex justify-between h-8 w-full p-1 bg-emerald-200" />
+<template class="">    
+    <ToDoHeader class="flex justify-between h-8 w-full p-1 bg-emerald-200 items-center" />
+    <tasksList class="grow w-full overflow-auto" />
+    <ToDoFooter class="flex justify-between h-8 w-full p-1 bg-emerald-200" />    
     <Teleport to="body">
     <AddTask_Modal v-if="ToDoStore.visibility" class="w-3/12 flex flex-col absolute self-center"  />
     </Teleport>
