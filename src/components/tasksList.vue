@@ -6,7 +6,7 @@
                 <span class="flex ml-5">
                     <input type="checkbox" id="task.id" v-model="task.isDone">
                     <button @click="ToDoStore.deleteTask(task.id)" title="Delete"
-                        class="bg-emerald-100 rounded-md border-emerald-400 mr-1 h-6 ml-2 text-emerald-900">
+                        class="bg-emerald-100 rounded-md border-emerald-400 mr-1 h-6 ml-2 text-emerald-900 hover:bg-emerald-900 hover:text-emerald-100">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -14,7 +14,7 @@
                     </button>
                 </span>
             </li>
-            <h3 v-show="ToDoStore.filterTasks.length === 0" class="flex justify-center items-center text-emerald-900 font-medium">No Tasks</h3>
+            <h3 v-show="ToDoStore.filterTasks.length === 0" class="flex justify-center text-emerald-900 font-medium">No Tasks</h3>
         </ul>
     </div>
 </template>
